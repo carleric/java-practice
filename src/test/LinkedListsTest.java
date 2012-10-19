@@ -1,6 +1,6 @@
 package test;
-import fundamentals.LinkedLists;
-import fundamentals.Node;
+import structures.LinkedLists;
+import structures.Node;
 import junit.framework.TestCase;
 
 

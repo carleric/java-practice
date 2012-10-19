@@ -1,4 +1,4 @@
-package fundamentals;
+package structures.trees;
 
 public class BinarySearchTree extends BinaryTree {
 	private int size = 0;

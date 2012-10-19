@@ -1,6 +1,6 @@
 package test;
-import fundamentals.BinaryMinHeap;
-import fundamentals.BinarySearchTree;
+import structures.trees.BinaryMinHeap;
+import structures.trees.BinarySearchTree;
 import junit.framework.TestCase;
 
 

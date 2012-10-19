@@ -2,7 +2,8 @@ package test;
 
 import java.util.ArrayList;
 
-import fundamentals.Strings;
+import strings.Strings;
+
 
 import junit.framework.TestCase;
 

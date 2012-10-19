@@ -1,4 +1,4 @@
-package fundamentals;
+package structures.trees;
 
 public class BinaryNode {
 	public BinaryNode right;

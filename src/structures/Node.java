@@ -1,4 +1,4 @@
-package fundamentals;
+package structures;
 
 public class Node {
 	Node next = null;

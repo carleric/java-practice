@@ -1,4 +1,4 @@
-package fundamentals;
+package structures.trees;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;

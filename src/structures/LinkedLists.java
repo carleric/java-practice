@@ -1,4 +1,4 @@
-package fundamentals;
+package structures;
 import java.util.Hashtable;
 
 

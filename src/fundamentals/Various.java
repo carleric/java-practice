@@ -1,7 +1,7 @@
 package fundamentals;
 
-public class App {
-	public App(){
+public class Various {
+	public Various(){
 		
 	}
 	

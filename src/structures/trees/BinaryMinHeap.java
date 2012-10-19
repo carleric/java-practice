@@ -1,4 +1,4 @@
-package fundamentals;
+package structures.trees;
 
 public class BinaryMinHeap {
 	private Comparable [] data;

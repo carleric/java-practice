@@ -1,12 +1,12 @@
 package test;
-import fundamentals.App;
+import fundamentals.Various;
 import junit.framework.TestCase;
 
 
 public class AppTest extends TestCase {
 
 	public void testFib() {
-		App app = new App();
+		Various app = new Various();
 		assertTrue(app.fib(0) == 0);
 		assertTrue(app.fib(1) == 1);
 		assertTrue(app.fib(2) == 2);
