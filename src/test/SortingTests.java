@@ -1,7 +1,7 @@
 package test;
+
 import fundamentals.Sorting;
 import junit.framework.TestCase;
-
 
 public class SortingTests extends TestCase {
 	private int [] arrayOne = {31, 45, 17, 87, 56, 22};

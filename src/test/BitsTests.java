@@ -1,4 +1,5 @@
 package test;
+
 import fundamentals.Bits;
 import junit.framework.TestCase;
 

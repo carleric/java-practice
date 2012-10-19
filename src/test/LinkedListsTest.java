@@ -1,4 +1,5 @@
 package test;
+
 import structures.LinkedLists;
 import structures.Node;
 import junit.framework.TestCase;

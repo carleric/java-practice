@@ -1,4 +1,5 @@
 package test;
+
 import structures.trees.BinaryMinHeap;
 import structures.trees.BinarySearchTree;
 import junit.framework.TestCase;
