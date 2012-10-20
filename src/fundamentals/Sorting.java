@@ -5,7 +5,7 @@ public class Sorting {
 	/**
 	 * O(n2) average
 	 */
-    public void bubbleSort(int [] nums){
+    public static void bubbleSort(int [] nums){
         boolean flag = true;
         while(flag){
             flag = false;
@@ -23,7 +23,7 @@ public class Sorting {
     /**
      * O(n2) always
      */
-    public void selectionSort(int [] nums){
+    public static void selectionSort(int [] nums){
     	for(int i =0; i<nums.length; i++){
     		int swap = -1;
     		int smallest = nums[i];
@@ -49,7 +49,7 @@ public class Sorting {
      * @param low
      * @param high
      */
-    public void mergeSort(int [] nums, int low, int high){
+    public static void mergeSort(int [] nums, int low, int high){
     	if(low < high){
     		int middle = (low + high) / 2;
     		mergeSort(nums, low, middle); //left half
@@ -58,7 +58,7 @@ public class Sorting {
     	}
     }
     
-    private void merge(int [] nums, int low, int middle, int high){
+    private static void merge(int [] nums, int low, int middle, int high){
     	int [] helper = new int[nums.length];
     	
     	for(int i=low; i<=high; i++){
@@ -98,7 +98,7 @@ public class Sorting {
      * @param left
      * @param right
      */
-    public void quickSort(int [] nums, int left , int right){
+    public static void quickSort(int [] nums, int left , int right){
     	int index = partition(nums, left, right);
     	if(left < index -1){//sort left half
     		quickSort(nums, left, index-1);
@@ -108,7 +108,7 @@ public class Sorting {
     	}
     }
     
-    private int partition(int [] nums, int left, int right){
+    private static int partition(int [] nums, int left, int right){
     	int pivot = nums[(left + right)/2]; //pick pivot point
     	while (left <= right){
     		while (nums[left] < pivot) left++;

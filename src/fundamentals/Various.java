@@ -16,8 +16,8 @@ public class Various {
 	 * drops.
 	 */
 	public static int[] findBreakingHeight(int floors, Bulb bulb){
-		//optimal first drop height the first increment
-		//of a sum of gradually decreasing increments that 
+		//optimal first drop height is the first increment
+		//of a sum of decreasing increments that 
 		//are just greater than the building height
 		int sum = 0;
 		int dropIncrement = 0;

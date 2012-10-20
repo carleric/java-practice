@@ -5,11 +5,9 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
-
 public class Strings {
 	
-	public boolean hasUniqueChars(String s){
+	public static boolean hasUniqueChars(String s){
 		//assume ASCII
 		boolean [] charmap = new boolean[256];
 		
@@ -22,7 +20,7 @@ public class Strings {
 		return true;
 	}
 
-	public boolean isPermutation(String a, String b){
+	public static boolean isPermutation(String a, String b){
 		if(a.length() != b.length())
 			return false;
 		else{
@@ -30,17 +28,17 @@ public class Strings {
 		}
 	}
 	
-	public String sortString(String s){
+	public static String sortString(String s){
 		char [] chars = s.toCharArray();
 		java.util.Arrays.sort(chars);
 		return new String(chars);
 	}
 	
 	/**
-	 * 1.4
+	 * Problem 1.4 from Cracking the Coding Interview by Gayle Laakmann McDowell
 	 * O(n2)
 	 */
-	public String replaceSpaces(String s){
+	public static String replaceSpaces(String s){
 		char [] c_arr = s.toCharArray();
 		for(int i=0; i<c_arr.length; i++){
 			if(c_arr[i] == ' '){
@@ -50,7 +48,7 @@ public class Strings {
 		return new String(c_arr);
 	}
 	
-	public char [] insertChars(char [] from, char [] to, int at){
+	public static char [] insertChars(char [] from, char [] to, int at){
 		Queue<Character> charQueue = new LinkedList<Character>();
 		for(int i=at, j=0; j<from.length; i++, j++){
 			if(to[i] != ' ')
@@ -67,7 +65,7 @@ public class Strings {
 	/**
 	 * from 1.4 solution: doesn't work!
 	 */
-	public void replaceSpaces(char [] str, int length){
+	public static void replaceSpaces(char [] str, int length){
 		int spaceCount = 0, newLength, i = 0;
 		for (i = 0; i < length; i++){
 			if(str[i] == ' ') {
@@ -91,16 +89,7 @@ public class Strings {
 		
 	}
 	
-	public String compressString(String s){
-		if(hasUniqueChars(s))
-			return s;
-		else{
-			
-		}
-		return s;
-	}
-	
-	public int factorial(int size){
+	public static int factorial(int size){
 		int fact = size;
 		for(int i = size-1; i >0; i--){
 			fact *= i;
@@ -108,39 +97,41 @@ public class Strings {
 		return fact;
 	}
 	
-	public ArrayList<String> getPermutations(String s){
+	public static ArrayList<String> getPermutations(String s){
 		ArrayList<String> perms = new ArrayList<String>();
 		if(s.length() ==1){
 			perms.add(s);
 		}
 		else{
-			//for(int i=0; i<s.length(); i++){
-				char startChar = s.charAt(0);
-				ArrayList <String>newperms = getPermutations(s.substring(1));
-				//insert start char in each possible position in the newperms list.
-				for(String perm : newperms){
-					
-					for(int j=0; j<=perm.length(); j++){
-						StringBuilder newperm = new StringBuilder();
-						if(j==0){
-							newperm.append(startChar);
-							newperm.append(perm);
-						}else if(j == (perm.length())){
-							newperm.append(perm);
-							newperm.append(startChar);
-						}else{
-							newperm.append(perm.substring(0, j));
-							newperm.append(startChar);
-							newperm.append(perm.substring(j));
-						}
-						perms.add(newperm.toString());
+			char startChar = s.charAt(0);
+			ArrayList <String>newperms = getPermutations(s.substring(1));
+			//insert start char in each possible position in the newperms list.
+			for(String perm : newperms){
+				
+				for(int j=0; j<=perm.length(); j++){
+					StringBuilder newperm = new StringBuilder();
+					if(j==0){
+						newperm.append(startChar);
+						newperm.append(perm);
+					}else if(j == (perm.length())){
+						newperm.append(perm);
+						newperm.append(startChar);
+					}else{
+						newperm.append(perm.substring(0, j));
+						newperm.append(startChar);
+						newperm.append(perm.substring(j));
 					}
-					
+					perms.add(newperm.toString());
 				}
+				
 			}
-		//}
+		}
+		
 		return perms;
 	}
+	
+
+	
 	
 	//assume contains valid words
 	private static HashSet <String> dictionary = new HashSet();
@@ -149,12 +140,14 @@ public class Strings {
 	private static Hashtable <Integer, String> digitToLetterMap = new Hashtable<Integer, String> ();
 	private static Hashtable <Character, Integer> letterToDigitMap = new Hashtable<Character, Integer>();
 	
-	{
+	static{
 		//add some valid words to the dictionary
 		dictionary.add("cool");
 		dictionary.add("bool");
 		dictionary.add("annk");
+		dictionary.add("dood");
 		
+		//phone digit key to letter map
 		digitToLetterMap.put(new Integer(2), "abc");
 		digitToLetterMap.put(new Integer(3), "def");
 		digitToLetterMap.put(new Integer(4), "ghi");
@@ -196,7 +189,7 @@ public class Strings {
 	 * given a 4 digit number and dictionary of valid words, write a function that will return a list of valid 4 letter words
 	 * @param number: a 4 digit number
 	 */
-	public String [] getVanityNumbers(int number){
+	public static String [] getVanityNumbers(int number){
 		ArrayList words = numberToWords.get(new Integer(number));
 		String [] wordsArray = new String[words.size()];
 		return (String []) words.toArray(wordsArray);
