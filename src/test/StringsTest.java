@@ -26,6 +26,11 @@ public class StringsTest extends TestCase {
 	
 	public void testReplaceSpaces(){
 		assertEquals(Strings.replaceSpaces("Mr John Smith    "), "Mr%20John%20Smith");
+		
+		char [] in = "Mr John Smith    ".toCharArray();
+		Strings.replaceSpaces(in, 13);
+		String out = new String(in);
+		assertEquals(out, "Mr%20John%20Smith");
 	}
 	
 	public void testGetPermutations(){
