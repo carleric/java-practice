@@ -22,5 +22,10 @@ public class VariousTest extends TestCase {
 		assertTrue(answer[0] == 13);
 		assertTrue(answer[1] == 14);
 	}
+	
+	public void testSieveOfEratosthenes(){
+		boolean [] primes = Various.sieveOfEratosthenes(10);
+		assertTrue(primes.length == 5);
+	}
 
 }
