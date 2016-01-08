@@ -36,4 +36,23 @@ public class VariousTest extends TestCase {
 		assertFalse(primes[8]);
 	}
 
+
+
+	public void testHasMatch()
+	{
+		String [] stringArray = {"foo", "bar", "buz", "bo"};
+		assertTrue(Various.hasMatch(stringArray, "f.o"));
+		assertTrue(Various.hasMatch(stringArray, "f.."));
+		assertTrue(Various.hasMatch(stringArray, ".uz"));
+		assertTrue(Various.hasMatch(stringArray, "..o"));
+		assertTrue(Various.hasMatch(stringArray, "..."));
+		assertFalse(Various.hasMatch(stringArray, "...."));
+		assertFalse(Various.hasMatch(stringArray, "f.r"));
+		assertFalse(Various.hasMatch(stringArray, "for"));
+		assertFalse(Various.hasMatch(stringArray, ".."));
+		assertFalse(Various.hasMatch(stringArray, "."));
+	}
+
+
+
 }

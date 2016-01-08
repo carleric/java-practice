@@ -141,6 +141,9 @@ public class Various {
 		for (int i = 0; i <  stringArray.length; i++) {
 			String item = stringArray[i];
 
+			if(item.length() != expression.length())
+				break;//not a match if the item isn't the same length as the test expression
+
 			int matchingCharCount = 0;
 
 			//for each char in item
