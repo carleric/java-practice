@@ -127,4 +127,34 @@ public class Various {
 		return new Bulb(breakingHeight);
 	}
 	
+	/**
+	 * Given an array of strings and a text expression, return true if any of the items in the array
+	 * matches the expression. '.' chars in the expression indicate a wild card
+	 * @param stringArray
+	 * @param expression
+	 * @return true if any matches are found
+	 */
+	public static boolean hasMatch(String [] stringArray, String expression) {
+
+
+		//for each item in collection
+		for (int i = 0; i <  stringArray.length; i++) {
+			String item = stringArray[i];
+
+			int matchingCharCount = 0;
+
+			//for each char in item
+			for (int j = 0; j < item.length(); j++) {
+				Character ch = item.charAt(j);
+				if(ch == expression.charAt(j) || expression.charAt(j) == '.') {
+					matchingCharCount++;
+				}
+			}
+
+			if (matchingCharCount == expression.length()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
