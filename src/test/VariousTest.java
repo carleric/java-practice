@@ -16,13 +16,17 @@ public class VariousTest extends TestCase {
 		assertTrue(Various.fib(6) == 13);
 		assertTrue(Various.fib(7) == 21);
 	}
-	
+
 	public void testFindBreakingHeight(){
 		int [] answer = Various.findBreakingHeight(100, Various.makeBulb(13));
 		assertTrue(answer[0] == 13);
 		assertTrue(answer[1] == 14);
+
+		int [] answer2 = Various.findBreakingHeight(100, Various.makeBulb(98));
+		assertTrue(answer2[0] == 98);
+		assertTrue(answer2[1] == 14);
 	}
-	
+
 	public void testSieveOfEratosthenes(){
 		boolean [] primes = Various.sieveOfEratosthenes(10);
 		assertTrue(primes[2]);
@@ -36,7 +40,17 @@ public class VariousTest extends TestCase {
 		assertFalse(primes[8]);
 	}
 
+	public void testGetProductsOfAllIntsExceptAtIndex() {
+		int [] intArray = {3, 1, 2, 5, 6, 4};
+		int [] products = Various.getProductsOfAllIntsExceptAtIndex(intArray);
 
+		assertTrue(products[0] == 240);
+	}
+
+	public void testHighestProduct() {
+		int [] intArray = {-10, -10, 1, 3, 2};
+		assertTrue(Various.highestProductOf3(intArray) == 300);
+	}
 
 	public void testHasMatch()
 	{
