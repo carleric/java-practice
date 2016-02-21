@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.List;
+import java.util.Collection;
+import java.lang.Character;
+import java.util.Arrays;
 
 public class Strings {
 	
@@ -82,44 +86,48 @@ public class Strings {
 	}
 	
 	public static int factorial(int size){
-		int fact = size;
-		for(int i = size-1; i >0; i--){
-			fact *= i;
-		}
-		return fact;
+            int fact = size;
+            for(int i = size-1; i >0; i--){
+                fact *= i;
+            }
+            return fact;
 	}
 	
 	public static ArrayList<String> getPermutations(String s){
-		ArrayList<String> perms = new ArrayList<String>();
-		if(s.length() ==1){
-			perms.add(s);
-		}
-		else{
-			char startChar = s.charAt(0);
-			ArrayList <String>newperms = getPermutations(s.substring(1));
-			//insert start char in each possible position in the newperms list.
-			for(String perm : newperms){
-				
-				for(int j=0; j<=perm.length(); j++){
-					StringBuilder newperm = new StringBuilder();
-					if(j==0){
-						newperm.append(startChar);
-						newperm.append(perm);
-					}else if(j == (perm.length())){
-						newperm.append(perm);
-						newperm.append(startChar);
-					}else{
-						newperm.append(perm.substring(0, j));
-						newperm.append(startChar);
-						newperm.append(perm.substring(j));
-					}
-					perms.add(newperm.toString());
-				}
-				
-			}
-		}
-		
-		return perms;
+            if(s == "") {
+                return new ArrayList<String>(Arrays.asList(new String[]{""}));
+            }
+            
+            ArrayList<String> perms = new ArrayList<String>();
+            if(s.length() == 1){
+                perms.add(s);
+            }
+            else{
+                char startChar = s.charAt(0);
+                ArrayList <String>newperms = getPermutations(s.substring(1));
+                //insert start char in each possible position in the newperms list.
+                for(String perm : newperms){
+
+                    for(int j=0; j<=perm.length(); j++){
+                        StringBuilder newperm = new StringBuilder();
+                        if(j==0){
+                            newperm.append(startChar);
+                            newperm.append(perm);
+                        }else if(j == (perm.length())){
+                            newperm.append(perm);
+                            newperm.append(startChar);
+                        }else{
+                            newperm.append(perm.substring(0, j));
+                            newperm.append(startChar);
+                            newperm.append(perm.substring(j));
+                        }
+                        perms.add(newperm.toString());
+                    }
+
+                }
+            }
+
+            return perms;
 	}
 	
 
@@ -186,6 +194,109 @@ public class Strings {
 		String [] wordsArray = new String[words.size()];
 		return (String []) words.toArray(wordsArray);
 	}
+        
+       /**
+        * 
+        * @param <T>
+        * @param list
+        * @return 
+        */ 
+       public static <T> List<List<T>> powerset(Collection<T> list) {
+           List<List<T>> ps = new ArrayList<List<T>>();
+           ps.add(new ArrayList<T>()); //add the empty set
+           
+           //for every item in the orginal set
+           for(T item : list) {
+               List<List<T>> newPs = new ArrayList<List<T>>();
+               
+               for (List<T> subset : ps) {
+                   // copy all of the current powerset's subsets
+                   newPs.add(subset);
+                   
+                   //plus the subsets appended with the current item
+                   List<T> newSubset = new ArrayList<T>(subset);
+                   newSubset.add(item);
+                   newPs.add(newSubset);
+               }
+               
+               ps = newPs;
+           }
+           return ps;
+       }
+        
+        private static String getStringRepresentation(List<Character> list)
+        {   
+            if(list.size() == 0) return "";
+            StringBuilder builder = new StringBuilder(list.size());
+            for(Character ch: list)
+            {
+                builder.append(ch);
+            }
+            return builder.toString();
+        }
+        
+        public static class StringLengthComparator implements java.util.Comparator<String> {
+
+            private int referenceLength;
+
+            public StringLengthComparator(String reference) {
+                super();
+                this.referenceLength = reference.length();
+            }
+
+            public int compare(String s1, String s2) {
+                int dist1 = Math.abs(s1.length() - referenceLength);
+                int dist2 = Math.abs(s2.length() - referenceLength);
+
+                return dist1 - dist2;
+            }
+        }
+        
+        /**
+         * given a dictionary of valid words, and a set of 7 characters, determine the longest valid
+         * word that can be made with those characters
+         */
+        public static String getLongestWord(String [] validWords, Character [] characters) {
+            ArrayList<String> validWordsAry = new ArrayList<String>(Arrays.asList(validWords));
+            
+            //get the powerset of the characters
+            ArrayList<Character> charAry = new ArrayList<Character>(Arrays.asList(characters));
+            List<List<Character>> ps = powerset(charAry);
+            System.out.println(String.format("powerset size=%d", ps.size()));
+            
+            //for each powerset, get the permutations
+            ArrayList <String>perms = new ArrayList<String>();
+            for(List<Character> set : ps) {
+                String s = getStringRepresentation(set);
+                ArrayList <String> prms = getPermutations(s);
+                perms.addAll(prms);
+            }
+            
+//            for(String validWord : validWordsAry) {
+//            	if(perms.contains(validWord)){
+//            		return validWord;
+//            	}
+//            }
+            
+            
+            //sort the perms by length
+            StringLengthComparator c = new StringLengthComparator(getStringRepresentation(charAry));
+            perms.sort(c);
+            System.out.println(String.format("generated %d permutations", perms.size()) );
+            
+            //for each perm, check if it is in validWords
+            int i = 0;
+            for(String perm : perms) {
+            	//System.out.println(String.format("testing word \"%s\" at index=%d", perm, i));
+                if(validWordsAry.contains(perm)) {
+                	System.out.println(String.format("found word \"%s\" at index=%d", perm, i));
+                    return perm;
+                }
+                i++;
+            }
+            
+            return null;
+        }
 	
 	
 }
