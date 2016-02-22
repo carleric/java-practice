@@ -37,7 +37,7 @@ public class StringsTest extends TestCase {
 	public void testGetPermutations(){
 		String s = "abc";
 		ArrayList<String> perms = Strings.getPermutations(s);
-                assertTrue(perms.size() == 6); //720 is 6! (6*5*4*3*2*1)
+        assertTrue(perms.size() == 6); //720 is 6! (6*5*4*3*2*1)
 		//assertTrue(perms.size() == 720); //720 is 6! (6*5*4*3*2*1)
 	}
 

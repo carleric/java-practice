@@ -86,48 +86,46 @@ public class Strings {
 	}
 	
 	public static int factorial(int size){
-            int fact = size;
-            for(int i = size-1; i >0; i--){
-                fact *= i;
-            }
-            return fact;
+        int fact = size;
+        for(int i = size-1; i > 0; i--){
+            fact *= i;
+        }
+        return fact;
 	}
 	
 	public static ArrayList<String> getPermutations(String s){
-            if(s == "") {
-                return new ArrayList<String>(Arrays.asList(new String[]{""}));
-            }
-            
-            ArrayList<String> perms = new ArrayList<String>();
-            if(s.length() == 1){
-                perms.add(s);
-            }
-            else{
-                char startChar = s.charAt(0);
-                ArrayList <String>newperms = getPermutations(s.substring(1));
-                //insert start char in each possible position in the newperms list.
-                for(String perm : newperms){
-
-                    for(int j=0; j<=perm.length(); j++){
-                        StringBuilder newperm = new StringBuilder();
-                        if(j==0){
-                            newperm.append(startChar);
-                            newperm.append(perm);
-                        }else if(j == (perm.length())){
-                            newperm.append(perm);
-                            newperm.append(startChar);
-                        }else{
-                            newperm.append(perm.substring(0, j));
-                            newperm.append(startChar);
-                            newperm.append(perm.substring(j));
-                        }
-                        perms.add(newperm.toString());
+        if(s == "") {
+            return new ArrayList<String>(Arrays.asList(new String[]{""}));
+        }
+        
+        ArrayList<String> perms = new ArrayList<String>();
+        if(s.length() == 1){
+            perms.add(s);
+        }
+        else{
+            char startChar = s.charAt(0);
+            ArrayList <String>newperms = getPermutations(s.substring(1));
+            //insert start char in each possible position in the newperms list.
+            for(String perm : newperms){
+                for(int j=0; j<=perm.length(); j++){
+                    StringBuilder newperm = new StringBuilder();
+                    if(j==0){
+                        newperm.append(startChar);
+                        newperm.append(perm);
+                    }else if(j == (perm.length())){
+                        newperm.append(perm);
+                        newperm.append(startChar);
+                    }else{
+                        newperm.append(perm.substring(0, j));
+                        newperm.append(startChar);
+                        newperm.append(perm.substring(j));
                     }
-
+                    perms.add(newperm.toString());
                 }
             }
+        }
 
-            return perms;
+        return perms;
 	}
 	
 
