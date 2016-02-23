@@ -35,7 +35,7 @@ public class Graph <T>{
 		
 		//iterate over the list and print out the path
 		for(Vertex <T>v : path) {
-			System.out.println(String.format("vertex value=%s", v.value));
+			System.out.println(String.format("shortest path: vertex value=%s", v.value));
 		}
 		
 		//return path to caller
@@ -54,14 +54,15 @@ public class Graph <T>{
 		origin.distance = 0;
 		q.add(origin);
 		while(q.isEmpty() == false) {
-			Vertex <T>current = q.poll();
+			Vertex <T>current = q.poll();//removes from front of queue
 			
-			for(Vertex <T>v : current.getAdjacentVertices()) {
+			for(Edge <T>e : current.edges) {
+				Vertex<T>v = e.v2;
 				if(v.visited == false) {
-					v.distance = current.distance + 1;
 					v.parent = current;
 					v.visited = true;
 					q.add(v);
+					System.out.println(String.format("BFS visited vertex value=%s", v.value));
 				}
 			}
 		}

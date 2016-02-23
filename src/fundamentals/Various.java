@@ -1,7 +1,12 @@
 package fundamentals;
 
+import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Various {
 
@@ -253,6 +258,59 @@ public class Various {
 		}
 		return false;
 	}
+	
+	/**
+	 * Given a list of numbers and an integer k, create a function that returns whether 
+	 * a certain integer input has a complement in the list that adds up to k.  
+	 */
+	public static boolean listContainsComplement(int [] list, int k, int input) {
+		for(int i = 0; i < list.length; i++) {
+			if(list[i] + input == k) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Given array of n integers and given a number X, find all the unique pairs of elements (a,b), whose summation is equal to X.
+	 */
+	public static List<List<Integer>> findPairsThatSumTo(int [] array, int k) {
+		List<List<Integer>> pairs = new ArrayList<List<Integer>>();
+		
+		Map <Integer,Integer>map = new HashMap<>();
+		for(int i= 0; i<array.length; i++) {
+			map.put(array[i], i);
+		}
+		
+		Set <String>memo = new HashSet<>();
+		
+		for(int i= 0; i<array.length; i++) {
+			
+			//use memoization to avoid recording duplicate matches
+			String foundKey = String.format("%d-%d", i, map.get(k-array[i]));
+			String foundKeyInversed = String.format("%d-%d", map.get(k-array[i]), i);
+			
+			if(map.containsKey(k - array[i]) 
+					&& !memo.contains(foundKey) 
+					&& !memo.contains(foundKeyInversed)
+					&& i != map.get(k-array[i])//don't print matches due to duplicate values
+					) {
+				System.out.println(String.format("found pair at indices %d and %d", i, map.get(k-array[i])));
+				memo.add(foundKey);
+				
+				ArrayList <Integer>ar = new ArrayList<>();
+				ar.add(i);
+				ar.add(map.get(k-array[i]));
+				pairs.add(ar);
+			}
+		}
+		return pairs;
+	}
+	
+	/**
+	 * Find total number of occurrences of a number in an array
+	 */
 
 
 }

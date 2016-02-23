@@ -1,5 +1,8 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fundamentals.Various;
 import junit.framework.TestCase;
 
@@ -67,6 +70,12 @@ public class VariousTest extends TestCase {
 		assertFalse(Various.hasMatch(stringArray, "."));
 	}
 
-
+	public void testFindPairsThatSumTo() {
+		//             0  1  2  3  4  5  6  7   8
+		int [] data = {0, 1, 2, 3, 5, 2, 4, 6, -1};
+		List <List<Integer>>pairs = Various.findPairsThatSumTo(data, 4);
+		assertTrue(pairs.get(0).get(0) == 0);
+		assertTrue(pairs.get(0).get(1) == 6);
+	}
 
 }

@@ -18,12 +18,12 @@ public class GraphTests {
 		Vertex <Integer>v5 = new Vertex<>(5);
 		Vertex <Integer>v6 = new Vertex<>(6);
 		
-		v1.addEdgeToVertex(v2);
-		v2.addEdgeToVertex(v3);
-		v3.addEdgeToVertex(v4);
-		v4.addEdgeToVertex(v5);
-		v5.addEdgeToVertex(v6);
-		v2.addEdgeToVertex(v6);
+		v1.addEdgeToVertex(v2, 1);
+		v2.addEdgeToVertex(v3, 1);
+		v3.addEdgeToVertex(v4, 1);
+		v4.addEdgeToVertex(v5, 1);
+		v5.addEdgeToVertex(v6, 1);
+		v2.addEdgeToVertex(v6, 1);
 		
 		Graph <Integer>g = new Graph<>(v1, v2, v3, v4, v5, v6);
 		
